@@ -312,4 +312,9 @@
 
     <bool name="config_enableAutoPowerModes">true</bool>
 
+    <string-array translatable="false" name="config_globalActionsList">
+         <item>power</item>
+         <item>reboot</item>
+    </string-array>
+
 </resources>
