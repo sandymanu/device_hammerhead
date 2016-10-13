@@ -20,6 +20,9 @@
 # Get the long list of APNs
 PRODUCT_COPY_FILES := device/lge/hammerhead/apns-full-conf.xml:system/etc/apns-conf.xml
 
+# Copy bootanimation
+PRODUCT_COPY_FILES := device/lge/hammerhead/bootanimation.zip:system/media/bootanimation.zip
+
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
