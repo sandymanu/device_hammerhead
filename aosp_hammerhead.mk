@@ -15,6 +15,8 @@
 #
 $(call inherit-product, device/lge/hammerhead/full_hammerhead.mk)
 
+PRODUCT_COPY_FILES := device/lge/hammerhead/apns-full-conf.xml:system/etc/apns-conf.xml
+
 PRODUCT_NAME := aosp_hammerhead
 
 PRODUCT_PACKAGES += \
