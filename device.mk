@@ -113,6 +113,7 @@ DEVICE_PACKAGE_OVERLAYS := \
     
 # Wifi
 PRODUCT_PACKAGES := \
+    android.hardware.wifi@1.0-service
     libwpa_client \
     hostapd \
     dhcpcd.conf \
@@ -162,6 +163,8 @@ PRODUCT_COPY_FILES += \
     
 # Camera
 PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.4-impl \
+    camera.device@3.2-impl \
     libqomx_core \
     libmmcamera_interface \
     libmmjpeg_interface \
@@ -175,14 +178,20 @@ PRODUCT_PACKAGES += \
     
 # Power
 PRODUCT_PACKAGES += \
+    android.hardware.power@1.0-impl \
     power.msm8974
 
 # GPS configuration
 PRODUCT_COPY_FILES += \
     device/lge/hammerhead/gps.conf:system/etc/gps.conf
+    
+# GNSS HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl
 
 # GPS
 PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl \
     libloc_adapter \
     libloc_eng \
     libloc_api_v02 \
@@ -207,10 +216,12 @@ PRODUCT_PACKAGES += \
     
 # Lights
 PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-impl \
     lights.hammerhead
     
 # USB
 PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service \
     com.android.future.usb.accessory
 
 # Filesystem management tools
@@ -223,6 +234,7 @@ PRODUCT_PACKAGES += \
     
 # Bluetooth
 PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl \
     bdAddrLoader
 
 PRODUCT_PACKAGES += \
