@@ -110,7 +110,8 @@ PRODUCT_CHARACTERISTICS := nosdcard
 
 DEVICE_PACKAGE_OVERLAYS := \
     device/lge/hammerhead/overlay
-
+    
+# Wifi
 PRODUCT_PACKAGES := \
     libwpa_client \
     hostapd \
@@ -122,7 +123,8 @@ PRODUCT_PACKAGES := \
 PRODUCT_PACKAGES += \
     LiveWallpapersPicker \
     librs_jni
-
+    
+# Display
 PRODUCT_PACKAGES += \
     gralloc.msm8974 \
     libgenlock \
@@ -130,7 +132,7 @@ PRODUCT_PACKAGES += \
     memtrack.msm8974 \
     libqdutils \
     libqdMetaData
-
+# OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
     libstagefrighthw \
@@ -139,7 +141,8 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVdecHevc \
     libOmxVenc
-
+    
+# Audio
 PRODUCT_PACKAGES += \
     audio.primary.msm8974 \
     audio.a2dp.default \
@@ -156,7 +159,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     device/lge/hammerhead/audio_effects.conf:system/vendor/etc/audio_effects.conf
-
+    
+# Camera
 PRODUCT_PACKAGES += \
     libqomx_core \
     libmmcamera_interface \
@@ -164,10 +168,12 @@ PRODUCT_PACKAGES += \
     camera.hammerhead \
     mm-jpeg-interface-test \
     mm-qcamera-app
-
+    
+# Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8974
-
+    
+# Power
 PRODUCT_PACKAGES += \
     power.msm8974
 
@@ -198,10 +204,12 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libion
-
+    
+# Lights
 PRODUCT_PACKAGES += \
     lights.hammerhead
-
+    
+# USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
@@ -212,7 +220,8 @@ PRODUCT_PACKAGES += \
 # for off charging mode
 PRODUCT_PACKAGES += \
     charger_res_images
-
+    
+# Bluetooth
 PRODUCT_PACKAGES += \
     bdAddrLoader
 
