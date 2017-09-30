@@ -311,5 +311,7 @@
     <integer name="config_screenBrightnessDoze">10</integer>
 
     <bool name="config_enableAutoPowerModes">true</bool>
-
+    
+     <!-- Enable Night display, which requires HWC 2.0. -->
+    <bool name="config_nightDisplayAvailable">true</bool>
 </resources>
