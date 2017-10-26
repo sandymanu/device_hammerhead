@@ -37,6 +37,10 @@ PRODUCT_COPY_FILES += \
     device/lge/hammerhead/hs_detect.kl:system/usr/keylayout/hs_detect.kl \
     device/lge/hammerhead/hs_detect.kcm:system/usr/keychars/hs_detect.kcm
 
+# HIDL
+PRODUCT_COPY_FILES += \
+    device/lge/hammerhead/manifest.xml:system/vendor/manifest.xml
+
 # Prebuilt input device calibration files
 PRODUCT_COPY_FILES += \
     device/lge/hammerhead/touch_dev.idc:system/usr/idc/touch_dev.idc
@@ -82,8 +86,15 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+    libbt-vendor \
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service
 
 # For GPS
 PRODUCT_COPY_FILES += \
@@ -116,7 +127,9 @@ PRODUCT_PACKAGES := \
     hostapd \
     dhcpcd.conf \
     wpa_supplicant \
-    wpa_supplicant.conf
+    wificond \
+    wpa_supplicant.conf \
+    android.hardware.wifi@1.0-service
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -129,7 +142,11 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8974 \
     memtrack.msm8974 \
     libqdutils \
-    libqdMetaData
+    libqdMetaData \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.memtrack@1.0-impl
 
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
@@ -141,11 +158,18 @@ PRODUCT_PACKAGES += \
     libOmxVenc
 
 PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
+    android.hardware.soundtrigger@2.0-impl \
     audio.primary.msm8974 \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
-    libaudio-resampler
+    libaudio-resampler \
+
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl
 
 # Audio effects
 PRODUCT_PACKAGES += \
@@ -163,7 +187,9 @@ PRODUCT_PACKAGES += \
     libmmjpeg_interface \
     camera.hammerhead \
     mm-jpeg-interface-test \
-    mm-qcamera-app
+    mm-qcamera-app \
+    android.hardware.camera.provider@2.4-impl \
+    camera.device@3.2-impl
 
 PRODUCT_PACKAGES += \
     keystore.msm8974
@@ -194,12 +220,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     nfc_nci.bcm2079x.default \
     NfcNci \
-    Tag
+    Tag \
+    android.hardware.nfc@1.0-impl \
+    android.hardware.nfc@1.0-service
 
 PRODUCT_PACKAGES += \
     libion
 
 PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-impl \
     lights.hammerhead
 
 PRODUCT_PACKAGES += \
@@ -217,7 +246,27 @@ PRODUCT_PACKAGES += \
     bdAddrLoader
 
 PRODUCT_PACKAGES += \
+    android.hardware.power@1.0-impl \
     power.hammerhead
+
+# Sensors
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl
+
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl
+
+# USB HAL
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
+# Media
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.media.treble_omx=false
+
+# Disable camera Treble path temporarily, b/34786432
+PRODUCT_PROPERTY_OVERRIDES += \
+    camera.disable_treble=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196608
@@ -226,7 +275,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=480
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.hwc.mdpcomp.enable=true
+    persist.hwc.mdpcomp.enable=true \
+    debug.hwui.use_buffer_age=false
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.texture_cache_size=72 \
