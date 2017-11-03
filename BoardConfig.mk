@@ -25,7 +25,7 @@ TARGET_NO_BOOTLOADER := true
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=hammerhead user_debug=31 maxcpus=2 msm_watchdog_v2.enable=1
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=hammerhead user_debug=31 maxcpus=2 msm_watchdog_v2.enable=1 androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02900000 --tags_offset 0x02700000
 
 # Shader cache config options
@@ -42,12 +42,9 @@ BOARD_USES_ALSA_AUDIO := true
 
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-
-ifeq ($(TARGET_PRODUCT),car_hammerhead)
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/hammerhead/bluetooth_car
-else
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/hammerhead/bluetooth
-endif
+BOARD_CUSTOM_BT_CONFIG := device/lge/hammerhead/vnd_hammerhead.txt
+AUDIO_FEATURE_ENABLED_HFP := false
 
 # Wifi related defines
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
@@ -65,7 +62,7 @@ BOARD_USES_SECURE_SERVICES := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_BOARD_PLATFORM := msm8974
 TARGET_BOOTLOADER_BOARD_NAME := hammerhead
-TARGET_BOARD_INFO_FILE := device/lge/hammerhead/board-info.txt
+#TARGET_BOARD_INFO_FILE := device/lge/hammerhead/board-info.txt
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 TARGET_NO_RPC := true
@@ -145,7 +142,7 @@ endif
 
 USE_CLANG_PLATFORM_BUILD := true
 
-TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
+TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS:= true
 
 -include vendor/lge/hammerhead/BoardConfigVendor.mk
 
